@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Task Manager</title>
+
+    <!-- Bootstrap 5.0.2 CSS for design -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Font Awesome CSS for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+    <style>
+        body {
+            /* background-image: linear-gradient(to right top, #0f58c6, #005795, #00454e, #062e1f, #171814); */
+            color: wheat;
+        }
+
+        .form-control::placeholder {
+            color: aliceblue;
+            opacity: 1;
+        }
+
+        #particles-js {
+            background-image: linear-gradient(to right top, #0f58c6, #005795, #00454e, #062e1f, #171814);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .Glassmorphism {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+    <link rel="stylesheet" href="Search.css">
+</head>
+
+<body class=".bg-dark.bg-gradient">
+
+    <nav class="navbar navbar-expand-lg navbar-dark Glassmorphism">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+                aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <a class="navbar-brand" href="index.html">Task Manager</a>
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="index.html">Home </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="add.html">Add Task</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="view.html">View Task</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="particles-js"> </div>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="mx-auto mt-5" style="max-width: 900px;">
+
+                <div class="container col">
+                    <div class="filter-search my-3">
+                        <div class="row justify-content-between">
+                            <div class="col-md-4 mb-3">
+                                Filter by:
+                                <select class="form-select w-100 Glassmorphism" style="height: 40px;" id="filterOption">
+                                    <option value="all">All</option>
+                                    <option value="complete">Complete</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="work">Work</option>
+                                    <option value="personal">Personal</option>
+                                    <option value="shopping">Shopping</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                Sort by:
+                                <select class="form-select w-100 Glassmorphism" style="height: 40px;" id="sortOption">
+                                    <option>Select</option>
+                                    <option>Date</option>
+                                    <option>Categories</option>
+                                    <option>Task</option>
+                                    <option>Assigned Person</option>
+                                </select>
+                            </div>
+
+
+                            <div class="col-md-4" class="search">
+                                Search:
+                                <div class="input-group">
+                                    <form class="bar">
+                                        <input type="search" name="search" pattern=".*\S.*" required autocomplete="off"
+                                            id="search">
+                                        <button class="search-btn" type="button" id="searchButton">
+                                            <span id="searchButtonContent">
+                                                <span>Search</span>
+                                            </span>
+                                        </button>
+                                    </form>
+
+                                    <!-- Search:
+                                <div class="input-group">
+                                    <input type="search" class="form-control" style="height: 40px;" placeholder="Search..."
+                                        aria-label="Recipient's username" id="search">
+                                </div> -->
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Display Table -->
+            <div class="container mt-4">
+                <p style="font-size: 20px;">There Are Total <span id="totalTasks" class="text-info"></span> Task
+                </p>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">S no</th>
+                                <th scope="col" id="sortTask">Task <i class="fa fa-caret-up"
+                                        style="font-size: 23px;"></i></th>
+                                <th scope="col" id="sortAssignedTo">Assigned to <i class="fa fa-caret-up"
+                                        style="font-size: 23px;"></i></th>
+                                <th scope="col" id="sortCategories">Categories <i class="fa fa-caret-up"
+                                        style="font-size: 23px;"></i></th>
+                                <th scope="col" id="sortDate">Date <i class="fa fa-caret-up"
+                                        style="font-size: 23px;"></i></th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="records">
+                            <!-- Table rows will be populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    </div>
+
+    <script src="view.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const searchButton = document.getElementById("searchButton");
+            const searchButtonContent = document.getElementById("searchButtonContent");
+            const searchInput = document.getElementById("search");
+
+            searchButton.addEventListener("click", function () {
+                if (searchButtonContent.textContent === "Search") {
+                    searchButtonContent.innerHTML = '<i class="fas fa-microphone"></i>';
+                    searchInput.setAttribute("placeholder", "Speak...");
+                } else {
+                    searchButtonContent.textContent = "Search";
+                    searchInput.setAttribute("placeholder", "Search...");
+                }
+            });
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const searchButton = document.getElementById("searchButton");
+            const searchButtonContent = document.getElementById("searchButtonContent");
+            const searchInput = document.getElementById("search");
+
+            // Toggle between Search and Microphone icon
+            searchButton.addEventListener("click", function () {
+                if (searchButtonContent.textContent === "Search") {
+                    searchButtonContent.innerHTML = '<i class="fas fa-microphone"></i>';
+                    searchInput.setAttribute("placeholder", "Speak...");
+                } else {
+                    searchButtonContent.textContent = "Search";
+                    searchInput.setAttribute("placeholder", "Search...");
+                }
+            });
+
+            // Speech-to-Text Functionality
+            const recognition = new webkitSpeechRecognition();
+            recognition.continuous = true;
+            recognition.interimResults = true;
+
+            searchButton.addEventListener("click", function () {
+                if (searchButtonContent.textContent === "Search") {
+                    recognition.start();
+                } else {
+                    recognition.stop();
+                }
+            });
+
+            recognition.onresult = function (event) {
+                const result = event.results[event.results.length - 1][0].transcript;
+                searchInput.value = result;
+            };
+
+            recognition.onend = function () {
+                recognition.stop();
+            };
+        });
+    </script>
+
+</body>
+
+</html>
