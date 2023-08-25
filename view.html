@@ -169,65 +169,7 @@ background: linear-gradient(0deg, rgba(0,0,0,1) 10%, rgba(48,47,188,1) 100%);
     <script src="view.js"></script>
     <script src="js/particles.js"></script>
     <script src="js/app.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const searchButton = document.getElementById("searchButton");
-            const searchButtonContent = document.getElementById("searchButtonContent");
-            const searchInput = document.getElementById("search");
-
-            searchButton.addEventListener("click", function () {
-                if (searchButtonContent.textContent === "Search") {
-                    searchButtonContent.innerHTML = '<i class="fas fa-microphone"></i>';
-                    searchInput.setAttribute("placeholder", "Speak...");
-                } else {
-                    searchButtonContent.textContent = "Search";
-                    searchInput.setAttribute("placeholder", "Search...");
-                }
-            });
-        });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const searchButton = document.getElementById("searchButton");
-            const searchButtonContent = document.getElementById("searchButtonContent");
-            const searchInput = document.getElementById("search");
-
-            // Toggle between Search and Microphone icon
-            searchButton.addEventListener("click", function () {
-                if (searchButtonContent.textContent === "Search") {
-                    searchButtonContent.innerHTML = '<i class="fas fa-microphone"></i>';
-                    searchInput.setAttribute("placeholder", "Speak...");
-                } else {
-                    searchButtonContent.textContent = "Search";
-                    searchInput.setAttribute("placeholder", "Search...");
-                }
-            });
-
-            // Speech-to-Text Functionality
-            const recognition = new webkitSpeechRecognition();
-            recognition.continuous = true;
-            recognition.interimResults = true;
-
-            searchButton.addEventListener("click", function () {
-                if (searchButtonContent.textContent === "Search") {
-                    recognition.start();
-                } else {
-                    recognition.stop();
-                }
-            });
-
-            recognition.onresult = function (event) {
-                const result = event.results[event.results.length - 1][0].transcript;
-                searchInput.value = result;
-            };
-
-            recognition.onend = function () {
-                recognition.stop();
-            };
-        });
-    </script>
-
+   
 </body>
 
 </html>
