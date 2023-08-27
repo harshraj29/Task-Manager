@@ -36,10 +36,10 @@ function DisplayTasks(tasksToShow) {
 
     tasksToDisplay.forEach((task, i) => {
         const taskDate = new Date(task.taskDate);
-        const isOverdue = taskDate < currentDate;
+        const isOverdue = !task.completed && taskDate < currentDate;
 
         const rowColor = isOverdue ? 'style="color: red;"' : '';
-        const taskStatus = isOverdue ? 'Overdue' : task.status;
+        const taskStatus = task.completed ? 'Complete' : (isOverdue ? 'Overdue' : task.status);
 
         statement += `<tr ${rowColor}>
             <th scope="row">${i + 1}</th>
@@ -49,8 +49,8 @@ function DisplayTasks(tasksToShow) {
             <td>${task.taskDate}</td>
             <td>${taskStatus}</td>
             <td>
-            <i class="fa fa-check btn text-white btn mx-2 bg-success" id="completeTaskbtn"
-            onclick="CompleteTask(${i})"></i>
+                <i class="fa fa-check btn text-white btn mx-2 bg-success" id="completeTaskbtn"
+                    onclick="CompleteTask(${i})"></i>
                 <i class="btn btn-danger text-white fa fa-trash" onclick='DeleteTask(${i})'></i>
             </td>
         </tr>`;
@@ -65,6 +65,7 @@ function DisplayTasks(tasksToShow) {
     // Update the task count
     document.getElementById('totalTasks').textContent = tasksToDisplay.length;
 }
+
 
 
 //======================= Update Function ================================
@@ -88,8 +89,6 @@ function DeleteTask(id) {
 function CompleteTask(id) {
     if (taskArray[id].status === 'Pending' || taskArray[id].status === 'Overdue') {
         taskArray[id].status = 'Complete';
-        // console.log(`Task ${id} status changed to 'Complete'`);
-        // console.log(taskArray[id].status)
     }
 
     SaveTasks(taskArray);

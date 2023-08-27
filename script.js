@@ -14,12 +14,18 @@ if (objStr != null) {
     taskArray = JSON.parse(objStr);
 }
 
-
 addTaskBtn.onclick = () => {
     const taskName = taskNameInput.value;
     const assignedTo = assignedToInput.value;
     const categories = categoriesSelect.value;
     const taskDate = taskDateInput.value;
+
+    if (taskName.trim() === '' || assignedTo.trim() === '' || taskDate.trim() === '') {
+        Swal.fire('Error', 'Please fill in all required fields.', 'error');
+        return;
+    }
+
+    Swal.fire('Success', 'Task added successfully!', 'success');
 
     taskArray.push({
         'taskName': taskName,
@@ -35,7 +41,8 @@ addTaskBtn.onclick = () => {
     assignedToInput.value = '';
     categoriesSelect.value = 'Work';
     taskDateInput.value = '';
-    addTaskBtn.innerText = 'Add Task';
+
+    
 };
 
 function SaveTasks(taskArray) {
@@ -43,10 +50,4 @@ function SaveTasks(taskArray) {
     localStorage.setItem('tasks', str);
     DisplayTasks();
 }
-
-
-
-
-
-
 
