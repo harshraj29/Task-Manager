@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Task Manager</title>
+
+    <!-- Bootstrap 5.0.2 CSS for design -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+    <!-- Font Awesome CSS for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+    <link rel="stylesheet" href="../Assets/CSS/Pages.css">
+    <link rel="stylesheet" href="../Assets/CSS/Search.css">
+</head>
+
+<body class=".bg-dark.bg-gradient">
+
+    <nav class="navbar navbar-expand-lg navbar-dark Glassmorphism">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
+                aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="../index.html">Task Manager</a>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="../index.html">Home </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="add.html">Add Task</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="view.html">View Task</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="particles-js"> </div>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="mx-auto mt-5" style="max-width: 900px;">
+
+                <div class="container col">
+                    <div class="filter-search my-3">
+                        <div class="row justify-content-between">
+                            <div class="col-md-4 mb-3">
+                                Filter by:
+                                <select class="form-select w-100 Glassmorphism" style="height: 40px;color: white;" id="filterOption">
+                                    <option value="all">All</option>
+                                    <option value="complete">Complete</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="work">Work</option>
+                                    <option value="personal">Personal</option>
+                                    <option value="shopping">Shopping</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                Sort by:
+                                <select class="form-select w-100 Glassmorphism" style="height: 40px;color: white;"
+                                    id="sortOption">
+                                    <option>Select</option>
+                                    <option>Date</option>
+                                    <option>Categories</option>
+                                    <option>Task</option>
+                                    <option>Assigned Person</option>
+                                </select>
+                            </div>
+
+
+                            <div class="col-md-4" class="search">
+                                Search:
+                                <div class="input-group">
+                                    <form class="bar">
+                                        <input type="search" name="search" pattern=".*\S.*" required autocomplete="off"
+                                            id="search">
+                                        <button class="search-btn" type="button" id="searchButton">
+                                            <span id="searchButtonContent">
+                                                <span>Search</span>
+                                            </span>
+                                        </button>
+                                    </form>
+
+                                    <!-- <div class="input-group Glassmorphism"
+                                        style="display: flex;justify-content: center;align-items: center;">
+                                        <input type="search" class="form-control "
+                                            style="height: 40px;background: transparent; color: white;"
+                                            placeholder="Search..." aria-label="Recipient's username" id="search-field">
+                                        
+                                            <input type="button" id="search-speech" value="Loading" disabled> -->
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Display Table -->
+        <div class="container mt-4">
+            <p style="font-size: 20px;">There Are Total <span id="totalTasks" class="text-info"></span> Task
+            </p>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">S no</th>
+                            <th scope="col" id="sortTask">Task <i class="fa fa-caret-up" style="font-size: 23px;"></i>
+                            </th>
+                            <th scope="col" id="sortAssignedTo">Assigned to <i class="fa fa-caret-up"
+                                    style="font-size: 23px;"></i></th>
+                            <th scope="col" id="sortCategories">Categories <i class="fa fa-caret-up"
+                                    style="font-size: 23px;"></i></th>
+                            <th scope="col" id="sortDate">Date <i class="fa fa-caret-up" style="font-size: 23px;"></i>
+                            </th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="records">
+                        <!-- Table rows will be populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+    </div>
+    </div>
+
+    <script src="../Assets/js/view.js"></script>
+    <script src="../Assets/js/particles.js"></script>
+    <script src="../Assets/js/app.js"></script>
+    <!-- <script src="../Assets/js/voice.js"></script> -->
+
+</body>
+
+</html>

@@ -1,0 +1,216 @@
+.search,
+.bar {
+    display: flex;
+}
+
+.bar input,
+.search-btn,
+.search-btn:before,
+.search-btn:after {
+    transition: all 0.25s ease-out;
+}
+
+.bar input,
+.search-btn {
+    width: 3em;
+    height: 3em;
+}
+
+.bar input:invalid:not(:focus),
+.search-btn {
+    cursor: pointer;
+}
+
+.bar,
+.bar input:focus,
+.bar input:valid {
+    width: 100%;
+}
+
+.bar input:focus,
+.bar input:not(:focus)+.search-btn:focus {
+    outline: transparent;
+}
+
+.bar {
+    margin: auto;
+    justify-content: center;
+    
+
+}
+
+.bar input {
+    background: transparent;
+    border-radius: 1.5em;
+    box-shadow: 0 0 0 0.4em #171717 inset;
+    padding: 0.75em;
+    transform: translate(0.5em, 0.5em) scale(0.5);
+    transform-origin: 100% 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.bar input::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+.bar input:focus,
+.bar input:valid {
+    background: #fff;
+    border-radius: 0.375em 0 0 0.375em;
+    box-shadow: 0 0 0 0.1em #d9d9d9 inset;
+    transform: scale(1);
+}
+
+.search-btn {
+    background: #171717;
+    border-radius: 0 0.75em 0.75em 0 / 0 1.5em 1.5em 0;
+    padding: 0.75em;
+    position: relative;
+    transform: translate(0.25em, 0.25em) rotate(45deg) scale(0.25, 0.125);
+    transform-origin: 0 50%;
+}
+
+.search-btn:before,
+.search-btn:after {
+    content: "";
+    display: block;
+    opacity: 0;
+    position: absolute;
+}
+
+.search-btn:before {
+    border-radius: 50%;
+    box-shadow: 0 0 0 0.2em #f1f1f1 inset;
+    top: 0.75em;
+    left: 0.75em;
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.search-btn:after {
+    background: #f1f1f1;
+    border-radius: 0 0.25em 0.25em 0;
+    top: 51%;
+    left: 51%;
+    width: 0.75em;
+    height: 0.25em;
+    transform: translate(0.2em, 0) rotate(45deg);
+    transform-origin: 0 50%;
+}
+
+.search-btn span {
+    display: inline-block;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+}
+
+.bar input:focus+.search-btn,
+.bar input:valid+.search-btn {
+    background: #7e7e7e;
+    border-radius: 0 0.375em 0.375em 0;
+    transform: scale(1);
+}
+
+.bar input:focus+.search-btn:before,
+.bar input:focus+.search-btn:after,
+.bar input:valid+.search-btn:before,
+.bar input:valid+.search-btn:after {
+    opacity: 1;
+}
+
+.bar input:focus+.search-btn:hover,
+.bar input:valid+.search-btn:hover,
+.bar input:valid:not(:focus)+.search-btn:focus {
+    background: #7e7e7e;
+}
+
+.bar input:focus+.search-btn:active,
+.bar input:valid+.search-btn:active {
+    transform: translateY(1px);
+}
+
+@media screen and (prefers-color-scheme: dark) {
+
+    .bar input {
+        box-shadow: 0 0 0 0.4em #f1f1f1 inset;
+    }
+
+    .bar input:focus,
+    .bar input:valid {
+        background: #3d3d3d;
+        box-shadow: 0 0 0 0.1em #3d3d3d inset;
+    }
+
+    .search-btn {
+        background: #f1f1f1;
+    }
+}
+
+
+
+
+/* Update the background color and adjust the height */
+.bar input {
+    background: transparent;
+    border-radius: 1.5em;
+    box-shadow: 0 0 0 0.4em #fff inset;
+    padding: 0.75em;
+    transform: translate(0.5em, 0.5em) scale(0.5);
+    transform-origin: 100% 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* Change the background color when focused */
+.bar input:focus,
+.bar input:valid {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0.375em 0 0 0.375em;
+    transform: scale(1);
+}
+
+/* Change the background color of the search button */
+.search-btn {
+    background: #fff;
+    border-radius: 0 0.75em 0.75em 0 / 0 1.5em 1.5em 0;
+    padding: 0.75em;
+    position: relative;
+    transform: translate(0.25em, 0.25em) rotate(45deg) scale(0.25, 0.125);
+    transform-origin: 0 50%;
+    border: none; 
+}
+
+/* Change the background color of the search button when focused */
+.bar input:focus+.search-btn,
+.bar input:valid+.search-btn {
+    background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0 0.375em 0.375em 0;
+    transform: scale(1);
+}
+
+.search-input {
+    position: relative;
+}
+
+.search-input input {
+    padding-right: 40px; /* Adjust this value to leave space for the icon */
+}
+
+.search-input i {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
