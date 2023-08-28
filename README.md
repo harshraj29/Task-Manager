@@ -1,7 +1,7 @@
 # Task Manager Web App <a href="https://harshraj29.github.io/Task-Manager/">Live</a>
 
 Task Manager App
-<img src="https://raw.githubusercontent.com/harshraj29/Task-Manager/main/Assets/Images/Home.png?token=GHSAT0AAAAAACEBBQNCBWIL3GXN2LFLRLMKZHMIQEA"></img>
+<img src="https://github.com/harshraj29/Task-Manager/blob/main/Assets/Images/Home.png?raw=true"></img>
 
 This web application is designed to help you manage your tasks effectively. It's built using HTML, CSS, JavaScript, Bootstrap, and Particle.js. The app provides CRUD (Create, Read, Update, Delete) functionality for tasks, allowing you to add, edit, change status, and delete tasks. Additionally, the app supports search, filter, and sort operations within the task table.
 
