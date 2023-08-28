@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
     <link rel="stylesheet" href="../Assets/CSS/Pages.css">
     <link rel="stylesheet" href="../Assets/CSS/Search.css">
@@ -56,7 +58,7 @@
                 <div class="container col">
                     <div class="filter-search my-3">
                         <div class="row justify-content-between">
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-4 mb-3" data-aos="fade-down">
                                 Filter by:
                                 <select class="form-select w-100 Glassmorphism" style="height: 40px;color: white;" id="filterOption">
                                     <option value="all">All</option>
@@ -68,7 +70,7 @@
                                 </select>
                             </div>
 
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-4 mb-3" data-aos="fade-down">
                                 Sort by:
                                 <select class="form-select w-100 Glassmorphism" style="height: 40px;color: white;"
                                     id="sortOption">
@@ -81,7 +83,7 @@
                             </div>
 
 
-                            <div class="col-md-4" class="search">
+                            <div class="col-md-4" class="search" data-aos="fade-down">
                                 Search:
                                 <div class="input-group">
                                     <form class="bar">
@@ -113,7 +115,7 @@
         </div>
 
         <!-- Display Table -->
-        <div class="container mt-4">
+        <div class="container mt-4" data-aos="fade-up">
             <p style="font-size: 20px;">There Are Total <span id="totalTasks" class="text-info"></span> Task
             </p>
             <div class="table-responsive">
@@ -149,6 +151,11 @@
     <script src="../Assets/js/particles.js"></script>
     <script src="../Assets/js/app.js"></script>
     <!-- <script src="../Assets/js/voice.js"></script> -->
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
 
 </body>
 
