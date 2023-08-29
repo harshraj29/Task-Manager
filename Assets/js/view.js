@@ -36,23 +36,23 @@ function DisplayTasks(tasksToShow) {
 
     tasksToDisplay.forEach((task, i) => {
         const taskDate = new Date(task.taskDate);
-        const isOverdue = !task.completed && taskDate < currentDate;
+        const isOverdue = task.status === 'Pending' && taskDate < currentDate;
 
         const rowColor = isOverdue ? 'style="color: red;"' : '';
         const taskStatus = task.completed ? 'Complete' : (isOverdue ? 'Overdue' : task.status);
 
         statement += `<tr ${rowColor}>
-            <th scope="row">${i + 1}</th>
-            <td contenteditable="true" onBlur="updateTaskData(this, 'taskName', ${i})">${task.taskName}</td>
-            <td contenteditable="true" onBlur="updateTaskData(this, 'assignedTo', ${i})">${task.assignedTo}</td>
-            <td contenteditable="true" onBlur="updateTaskData(this, 'categories', ${i})">${task.categories}</td>
-            <td>${task.taskDate}</td>
-            <td>${taskStatus}</td>
-            <td>
-                <i class="fa fa-check btn text-white btn mx-2 bg-success" id="completeTaskbtn"
-                    onclick="CompleteTask(${i})"></i>
-                <i class="btn btn-danger text-white fa fa-trash" onclick='DeleteTask(${i})'></i>
-            </td>
+        <th scope="row">${i + 1}</th>
+        <td contenteditable="true" onBlur="updateTaskData(this, 'taskName', ${i})">${task.taskName}</td>
+        <td contenteditable="true" onBlur="updateTaskData(this, 'assignedTo', ${i})">${task.assignedTo}</td>
+        <td contenteditable="true" onBlur="updateTaskData(this, 'categories', ${i})">${task.categories}</td>
+        <td>${task.taskDate}</td>
+        <td>${taskStatus}</td>
+        <td>
+            <i class="fa fa-check btn text-white btn mx-2 bg-success" id="completeTaskbtn"
+                onclick="CompleteTask(${i})"></i>
+            <i class="btn btn-danger text-white fa fa-trash" onclick='DeleteTask(${i})'></i>
+        </td>
         </tr>`;
     });
 
@@ -133,7 +133,7 @@ filterOption.addEventListener('change', function () {
     } else {
         filteredTasks = taskArray.filter(task => task.categories.toLowerCase() === selectedOption.toLowerCase());
     }
-    console.log(filteredTasks);
+    // console.log(filteredTasks);
     DisplayTasks(filteredTasks);
 });
 

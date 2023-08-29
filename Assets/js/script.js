@@ -6,7 +6,6 @@ const taskDateInput = document.getElementById('taskDate');
 const recordsDisplay = document.getElementById('records');
 
 let taskArray = [];
-let edit_id = null;
 
 let objStr = localStorage.getItem('tasks');
 
