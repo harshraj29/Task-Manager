@@ -19,29 +19,31 @@ addTaskBtn.onclick = () => {
     const categories = categoriesSelect.value;
     const taskDate = taskDateInput.value;
 
-    if (taskName.trim() === '' || assignedTo.trim() === '' || taskDate.trim() === '') {
+    const currentDate = new Date();
+    const inputTaskDate = new Date(taskDate);
+
+    if (taskName.trim() === '' || assignedTo.trim() === '') {
         Swal.fire('Error', 'Please fill in all required fields.', 'error');
-        return;
+    } else if (inputTaskDate < currentDate) {
+        Swal.fire('Error', 'Task date cannot be earlier than the current date.', 'error');
+    } else {
+        Swal.fire('Success', 'Task added successfully!', 'success');
+
+        taskArray.push({
+            'taskName': taskName,
+            'assignedTo': assignedTo,
+            'categories': categories,
+            'taskDate': taskDate,
+            'status': 'Pending'
+        });
+
+        SaveTasks(taskArray);
+
+        taskNameInput.value = '';
+        assignedToInput.value = '';
+        categoriesSelect.value = 'Work';
+        taskDateInput.value = '';
     }
-
-    Swal.fire('Success', 'Task added successfully!', 'success');
-
-    taskArray.push({
-        'taskName': taskName,
-        'assignedTo': assignedTo,
-        'categories': categories,
-        'taskDate': taskDate,
-        'status': 'Pending'
-    });
-
-    SaveTasks(taskArray);
-
-    taskNameInput.value = '';
-    assignedToInput.value = '';
-    categoriesSelect.value = 'Work';
-    taskDateInput.value = '';
-
-    
 };
 
 function SaveTasks(taskArray) {

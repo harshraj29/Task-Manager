@@ -102,6 +102,7 @@ function CompleteTask(id) {
 
 const allTr = document.querySelectorAll('#records tr');
 const searchInputField = document.querySelector('#search');
+
 searchInputField.addEventListener('input', function (e) {
     const searchStr = e.target.value.toLowerCase();
     recordsDisplay.innerHTML = '';
@@ -117,8 +118,6 @@ searchInputField.addEventListener('input', function (e) {
     }
 });
 
-
-
 // ============================= Filter Option =========================================
 
 const filterOption = document.getElementById('filterOption');
@@ -133,7 +132,7 @@ filterOption.addEventListener('change', function () {
     } else {
         filteredTasks = taskArray.filter(task => task.categories.toLowerCase() === selectedOption.toLowerCase());
     }
-    // console.log(filteredTasks);
+    console.log(filteredTasks);
     DisplayTasks(filteredTasks);
 });
 
